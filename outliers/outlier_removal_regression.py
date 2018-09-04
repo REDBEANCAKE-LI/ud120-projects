@@ -25,15 +25,15 @@ ages_train, ages_test, net_worths_train, net_worths_test = train_test_split(ages
 
 ### fill in a regression here!  Name the regression object reg so that
 ### the plotting code below works, and you can see what your regression looks like
+from sklearn.linear_model import LinearRegression
+reg = LinearRegression()
+reg.fit(ages_train, net_worths_train)
 
+### What's the slope of your regression? ###
+print "\nslope: ", reg.coef_[0][0]
 
-
-
-
-
-
-
-
+### What score does your regression get when it's applied to the test data? ###
+print "score on the test data: ", reg.score(ages_test, net_worths_test)
 
 
 try:
@@ -77,8 +77,10 @@ if len(cleaned_data) > 0:
     plt.xlabel("ages")
     plt.ylabel("net worths")
     plt.show()
-
-
+    ### What's the new slope when the outliers have been cleaned away? ###
+    print "\nnew slope on the cleaned data: ", reg.coef_[0][0]
+    ### What's the new score? ###
+    print "new score on the test data: ", reg.score(ages_test, net_worths_test)
 else:
     print "outlierCleaner() is returning an empty list, no refitting to be done"
 
