@@ -72,24 +72,8 @@ pickle.dump( word_data, open("your_word_data.pkl", "w") )
 pickle.dump( from_data, open("your_email_authors.pkl", "w") )
 
 ### in Part 4, do TfIdf vectorization here
-###
-###
-### delete stopwords first ###
 from nltk.corpus import stopwords
-sw = stopwords.words('english')
-word_data_new = []
-for text in word_data:
-    text_new = []
-    text_list = text.split()
-    for word in text_list:
-        if word not in sw:
-            text_new.append(word)
-    word_data_new.append(" ".join(text_new))
-
-### a simple test on deleting stopwords ###
-#print "\nword_data_new[152]: ", word_data_new[152]
-
-### get tf_idf using nltk ###
 from sklearn.feature_extraction.text import TfidfVectorizer
-vectorizer = TfidfVectorizer()
-bag_of_words = vectorizer.fit_transform(word_data_new)
+vectorizer = TfidfVectorizer(stop_words='english')
+bag_of_words = vectorizer.fit_transform(word_data)
+print "\ncount of bag_of_words: ", bag_of_words
