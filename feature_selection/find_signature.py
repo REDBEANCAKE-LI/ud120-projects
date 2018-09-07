@@ -30,6 +30,8 @@ features_test  = vectorizer.transform(features_test).toarray()
 
 ###
 print '\nthe 33614th term: ', vectorizer.get_feature_names()[33614]
+print 'the 14343th term: ', vectorizer.get_feature_names()[14343]
+print 'the 21323th term: ', vectorizer.get_feature_names()[21323]
 
 ### a classic way to overfit is to use a small number
 ### of data points and a large number of features;
@@ -43,13 +45,13 @@ labels_train   = labels_train[:150]
 from sklearn.tree import DecisionTreeClassifier
 clf = DecisionTreeClassifier()
 clf.fit(features_train, labels_train)
-print "score on test data: ", clf.score(features_test, labels_test)
+print "\nscore on test data: ", clf.score(features_test, labels_test)
 
 ### What's the most important feature? ###
 f_i = clf.feature_importances_
 f_i_new = []
 index = []
-threshold = 0.1
+threshold = 0.2
 for data in f_i:
     if data > threshold:
         f_i_new.append(data)
